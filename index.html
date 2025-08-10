@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徐定坤 - 个人主页</title>
+    <link rel="stylesheet" href="ai_studio_code.css">
+</head>
+<body>
+
+    <!-- ================== 导航栏 ================== -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">徐定坤</div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-section="home">主页</a></li>
+                    <li><a href="#education" class="nav-link" data-section="education">教育经历</a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects">项目/工作经历</a></li>
+                    <li><a href="#hobbies" class="nav-link" data-section="hobbies">爱好与特长</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- ================== Section 1: 主页 (Home) ================== -->
+        <section id="home" class="content-section active">
+            <div class="container section-content">
+                <!-- 左侧图片轮播 -->
+                <div class="image-column">
+                    <div class="carousel">
+                        <div class="carousel-container">
+                            <!-- 个人头像图片 -->
+                            <img src="images/profile1.jpg" alt="徐定坤个人头像1" class="carousel-slide active">
+                            <img src="images/profile2.jpg" alt="徐定坤个人头像2" class="carousel-slide">
+                            <img src="images/profile3.jpg" alt="徐定坤个人头像3" class="carousel-slide">
+                        </div>
+                        <button class="carousel-btn prev" onclick="changeSlide('home', -1)">❮</button>
+                        <button class="carousel-btn next" onclick="changeSlide('home', 1)">❯</button>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide('home', 0)"></span>
+                            <span class="dot" onclick="currentSlide('home', 1)"></span>
+                            <span class="dot" onclick="currentSlide('home', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧文字 -->
+                <div class="text-column">
+                    <h1>徐定坤 (Xu Dingkun)</h1>
+                    <p class="subtitle">生物化学与分子生物学硕士 | AI技术应用探索者</p>
+                    <p>一位积极主动、充满抱负的武汉大学硕士研究生，在生物化学与分子生物学领域拥有扎实的基础。具备出色的组织领导能力，曾多次担任班长。抗压性强，能够独立负责并完成复杂的科研项目。致力于将计算机视觉(CV)和自然语言处理(NLP)等前沿技术应用于解决实际问题，渴望在充满挑战的岗位上创造价值。</p>
+                    <div class="contact-info">
+                        <h3>联系方式:</h3>
+                        <p><strong>电话:</strong> 150-3766-9832</p>
+                        <p><strong>邮箱:</strong> 2022202040114@whu.edu.cn</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== Section 2: 教育经历 (Education) ================== -->
+        <section id="education" class="content-section">
+            <div class="container section-content">
+                <!-- 左侧图片轮播 -->
+                <div class="image-column">
+                    <div class="carousel">
+                        <div class="carousel-container">
+                            <!-- 教育经历图片 -->
+                            <img src="images/wuhan-university1.jpg" alt="武汉大学1" class="carousel-slide active">
+                            <img src="images/wuhan-university2.jpg" alt="武汉大学2" class="carousel-slide">
+                            <img src="images/wuhan-university3.png" alt="武汉大学3" class="carousel-slide">
+                        </div>
+                        <button class="carousel-btn prev" onclick="changeSlide('education', -1)">❮</button>
+                        <button class="carousel-btn next" onclick="changeSlide('education', 1)">❯</button>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide('education', 0)"></span>
+                            <span class="dot" onclick="currentSlide('education', 1)"></span>
+                            <span class="dot" onclick="currentSlide('education', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧文字 -->
+                <div class="text-column">
+                    <h2>教育经历</h2>
+                    <div class="experience-item">
+                        <h3>武汉大学 (2022.09 – 2025.06)</h3>
+                        <p><strong>学位:</strong> 生物化学与分子生物学 硕士</p>
+                        <p><strong>主修课程:</strong> 现代仪器分析, 表观遗传学, 蛋白质组学, 高级生物化学与分子生物学</p>
+                        <p><strong>荣誉:</strong> 武汉大学学业奖学金</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>河南科技大学 (2018.09 – 2022.06)</h3>
+                        <p><strong>学位:</strong> 生物技术 本科</p>
+                        <p><strong>主修课程:</strong> 生物化学, 遗传学, 分子生物学, 生物信息学, 细胞工程, 酶工程</p>
+                        <p><strong>荣誉:</strong> 河南科技大学优秀学生干部、河南科技大学二等奖学金</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== Section 3: 项目/工作经历 (Projects/Work Experience) ================== -->
+        <section id="projects" class="content-section">
+            <div class="container section-content">
+                <!-- 左侧图片轮播 -->
+                <div class="image-column">
+                    <div class="carousel">
+                        <div class="carousel-container">
+                            <!-- 项目展示图片 -->
+                            <img src="images/project1.jpg" alt="项目展示1" class="carousel-slide active">
+                            <img src="https://via.placeholder.com/400x400.png?text=项目展示2" alt="项目展示2" class="carousel-slide">
+                            <img src="https://via.placeholder.com/400x400.png?text=项目展示3" alt="项目展示3" class="carousel-slide">
+                        </div>
+                        <button class="carousel-btn prev" onclick="changeSlide('projects', -1)">❮</button>
+                        <button class="carousel-btn next" onclick="changeSlide('projects', 1)">❯</button>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide('projects', 0)"></span>
+                            <span class="dot" onclick="currentSlide('projects', 1)"></span>
+                            <span class="dot" onclick="currentSlide('projects', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧文字 -->
+                <div class="text-column">
+                    <h2>项目/工作经历</h2>
+                    <div class="experience-item">
+                        <h3>营销管培生 | 深圳华大集团 (2025.02 – 2025.03)</h3>
+                        <p>在营销部门全流程轮转，主要负责销售场景建立、高科技产品对接解惑及商务谈判等工作。</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>项目：基于OCR的化妆品用户反馈智能分析引擎</h3>
+                        <p>独立开发此智能引擎，旨在自动化处理电商平台的图片反馈，高效提取用户洞察。核心贡献: 使用Python (pytesseract, jieba) 构建了从图片文字识别、关键词提取到词云可视化 (wordcloud) 的完整工作流，并将手动分析效率提升了数倍。通过模块化重构和异常处理，保证了工具的健壮性与可移植性。</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>项目：AI视频生成工作流《古人的一生》</h3>
+                        <p>使用Coze平台设计并实现了一个复杂的AIGC工作流。此流程仅需输入一个名字，即可全自动地生成一部讲述古人生平的长视频，展现了在自动化和生成式AI领域的实践能力。</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>项目：湿实验自动化</h3>
+                        <p>作为负责人，利用R、Python及ChatGPT为实验结果分析赋能，将流程分析时间缩短至少2小时，并成功推广至全实验室使用。</p>
+                    </div>
+                     <div class="experience-item">
+                        <h3>项目：新型高效纸基摩擦纳米发电装置 (2019.03-2019.07)</h3>
+                        <p>作为第一负责人，探索可穿戴设备生物发电的可能。主要负责项目任务分配、监督、组织讨论及最终汇报。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== Section 4: 爱好与特长 (Hobbies & Skills) ================== -->
+        <section id="hobbies" class="content-section">
+            <div class="container section-content">
+                <!-- 左侧图片轮播 -->
+                <div class="image-column">
+                    <div class="carousel">
+                        <div class="carousel-container">
+                            <!-- 技能爱好图片 -->
+                            <img src="images/hobby1.jpg" alt="技能展示1" class="carousel-slide active">
+                            <img src="images/hobby2.jpg" alt="技能展示2" class="carousel-slide">
+                            <img src="https://via.placeholder.com/400x400.png?text=技能展示3" alt="技能展示3" class="carousel-slide">
+                        </div>
+                        <button class="carousel-btn prev" onclick="changeSlide('hobbies', -1)">❮</button>
+                        <button class="carousel-btn next" onclick="changeSlide('hobbies', 1)">❯</button>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide('hobbies', 0)"></span>
+                            <span class="dot" onclick="currentSlide('hobbies', 1)"></span>
+                            <span class="dot" onclick="currentSlide('hobbies', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧文字 -->
+                <div class="text-column">
+                    <h2>爱好与特长</h2>
+                    <div class="skills-category">
+                        <h3>专业技能:</h3>
+                        <ul>
+                            <li>分子生物学: 精通Western-blot, qPCR, CRISPR-Cas9基因敲除系统。</li>
+                            <li>细胞/病理学: 熟练掌握原代细胞培养、免疫荧光、石蜡包埋等技术。</li>
+                            <li>动物实验: 具备丰富的小鼠饲养、灌流、腹腔注射及毛囊分离经验。</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category">
+                        <h3>技术与编程:</h3>
+                        <ul>
+                            <li>编程语言: 熟练使用 Python, R语言, Excel, PowerPoint, GraphPad。</li>
+                            <li>语言能力: 雅思 6.0，大学英语六级(CET-6) 462分，普通话二级甲等。</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category">
+                        <h3>兴趣爱好与课外活动:</h3>
+                        <ul>
+                            <li>领导力: 长期担任班长，组织能力强。</li>
+                            <li>社团活动: 曾任实验室生活委员、茶艺协会秘书部成员、学院合唱团成员等，积极参与校园生活。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================== 页脚 ================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 徐定坤. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="ai_studio_code.js"></script>
+</body>
+</html>
