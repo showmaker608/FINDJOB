@@ -15,10 +15,11 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: #f5f5f5;
             padding: 20px;
+            font-size: 16px;
         }
 
         .editor-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             border-radius: 10px;
@@ -29,12 +30,17 @@
         .editor-header {
             background: #333;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
         }
 
         .editor-header h1 {
             margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .editor-header p {
+            font-size: 16px;
         }
 
         .editor-tabs {
@@ -45,7 +51,7 @@
 
         .tab-btn {
             flex: 1;
-            padding: 15px;
+            padding: 18px;
             border: none;
             background: none;
             cursor: pointer;
@@ -61,7 +67,7 @@
 
         .tab-content {
             display: none;
-            padding: 30px;
+            padding: 35px;
         }
 
         .tab-content.active {
@@ -69,23 +75,24 @@
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
             color: #333;
+            font-size: 16px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 16px;
             transition: border-color 0.3s;
         }
 
@@ -97,17 +104,18 @@
         }
 
         .form-group textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
         .image-upload {
             border: 2px dashed #ddd;
             border-radius: 5px;
-            padding: 30px;
+            padding: 35px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 20px;
         }
 
         .image-upload:hover {
@@ -122,14 +130,15 @@
         .image-preview {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
+            min-height: 60px;
         }
 
         .image-item {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 5px;
             overflow: hidden;
             border: 2px solid #ddd;
@@ -149,20 +158,21 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             transition: all 0.3s;
-            margin-right: 10px;
+            margin-right: 15px;
+            margin-bottom: 15px;
         }
 
         .btn-primary {
@@ -194,32 +204,63 @@
 
         .action-buttons {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             border-top: 1px solid #dee2e6;
             background: #f8f9fa;
-        }
-
-        .preview-frame {
-            width: 100%;
-            height: 600px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
 
         .section-group {
             border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #333;
             border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+        }
+
+        .deployment-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .deployment-info h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .preview-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .preview-content {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+
+        .preview-content h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .preview-content p {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -228,6 +269,17 @@
         <div class="editor-header">
             <h1>个人主页可视化编辑器</h1>
             <p>在这里轻松编辑你的个人主页内容</p>
+        </div>
+
+        <div class="deployment-info">
+            <h3>📝 使用说明</h3>
+            <p><strong>编辑流程：</strong></p>
+            <ol>
+                <li>在"内容编辑"标签页修改文字内容</li>
+                <li>在"图片管理"标签页上传图片</li>
+                <li>在"预览效果"标签页查看编辑结果</li>
+                <li>保存更改后，刷新主页面即可看到效果</li>
+            </ol>
         </div>
 
         <div class="editor-tabs">
@@ -338,56 +390,81 @@
         <div id="images" class="tab-content">
             <div class="section-group">
                 <div class="section-title">主页头像图片</div>
-                <div class="image-upload" onclick="document.getElementById('home-images').click()">
+                <div class="image-upload" onclick="triggerFileUpload('home-images')">
                     <input type="file" id="home-images" multiple accept="image/*" onchange="handleImageUpload('home', this)">
                     <p>点击上传主页头像图片（可多选）</p>
+                    <p style="font-size: 14px; color: #666;">支持 JPG, PNG, GIF 格式</p>
                 </div>
-                <div id="home-image-preview" class="image-preview"></div>
+                <div id="home-image-preview" class="image-preview">
+                    <p style="color: #999; width: 100%; text-align: center;">暂无图片</p>
+                </div>
             </div>
 
             <div class="section-group">
                 <div class="section-title">教育经历图片</div>
-                <div class="image-upload" onclick="document.getElementById('education-images').click()">
+                <div class="image-upload" onclick="triggerFileUpload('education-images')">
                     <input type="file" id="education-images" multiple accept="image/*" onchange="handleImageUpload('education', this)">
-                    <p>点击上传教育经历相关图片（可多选）</p>
+                    <p>📷 点击上传教育经历相关图片（可多选）</p>
+                    <p style="font-size: 14px; color: #666;">支持 JPG, PNG, GIF 格式</p>
                 </div>
-                <div id="education-image-preview" class="image-preview"></div>
+                <div id="education-image-preview" class="image-preview">
+                    <p style="color: #999; width: 100%; text-align: center;">暂无图片</p>
+                </div>
             </div>
 
             <div class="section-group">
                 <div class="section-title">项目展示图片</div>
-                <div class="image-upload" onclick="document.getElementById('projects-images').click()">
+                <div class="image-upload" onclick="triggerFileUpload('projects-images')">
                     <input type="file" id="projects-images" multiple accept="image/*" onchange="handleImageUpload('projects', this)">
                     <p>点击上传项目展示图片（可多选）</p>
+                    <p style="font-size: 14px; color: #666;">支持 JPG, PNG, GIF 格式</p>
                 </div>
-                <div id="projects-image-preview" class="image-preview"></div>
+                <div id="projects-image-preview" class="image-preview">
+                    <p style="color: #999; width: 100%; text-align: center;">暂无图片</p>
+                </div>
             </div>
 
             <div class="section-group">
                 <div class="section-title">技能爱好图片</div>
-                <div class="image-upload" onclick="document.getElementById('hobbies-images').click()">
+                <div class="image-upload" onclick="triggerFileUpload('hobbies-images')">
                     <input type="file" id="hobbies-images" multiple accept="image/*" onchange="handleImageUpload('hobbies', this)">
-                    <p>点击上传技能爱好相关图片（可多选）</p>
+                    <p>📷 点击上传技能爱好相关图片（可多选）</p>
+                    <p style="font-size: 14px; color: #666;">支持 JPG, PNG, GIF 格式</p>
                 </div>
-                <div id="hobbies-image-preview" class="image-preview"></div>
+                <div id="hobbies-image-preview" class="image-preview">
+                    <p style="color: #999; width: 100%; text-align: center;">暂无图片</p>
+                </div>
             </div>
         </div>
 
         <!-- 预览标签页 -->
         <div id="preview" class="tab-content">
-            <div class="section-group">
-                <div class="section-title">实时预览</div>
-                <p>点击下方按钮查看编辑后的效果</p>
-                <button class="btn btn-primary" onclick="generatePreview()">生成预览</button>
-                <button class="btn btn-success" onclick="saveChanges()">保存更改</button>
+            <div class="preview-notice">
+                <strong>预览说明：</strong>这里显示你编辑的内容预览。保存更改后，刷新主页面即可看到实际效果。
             </div>
-            <iframe id="preview-frame" class="preview-frame" src="ai_studio_code.html"></iframe>
+            
+            <div class="section-group">
+                <div class="section-title">当前编辑内容预览</div>
+                <div id="content-preview" class="preview-content">
+                    <p>保存更改后将显示预览内容...</p>
+                </div>
+            </div>
+
+            <div class="section-group">
+                <div class="section-title">操作说明</div>
+                <p>编辑完成后：</p>
+                <ol>
+                    <li>点击"保存所有更改"按钮保存当前编辑</li>
+                    <li>点击"打开主页面"按钮查看效果</li>
+                    <li>如果看不到更新，请刷新主页面</li>
+                </ol>
+            </div>
         </div>
 
         <div class="action-buttons">
             <button class="btn btn-primary" onclick="saveChanges()">保存所有更改</button>
             <button class="btn btn-secondary" onclick="resetToDefault()">重置为默认</button>
-            <button class="btn btn-success" onclick="exportWebsite()">导出网站</button>
+            <button class="btn btn-success" onclick="openMainPage()">打开主页面</button>
         </div>
     </div>
 
@@ -411,26 +488,70 @@
             event.target.classList.add('active');
         }
 
+        // 触发文件上传
+        function triggerFileUpload(inputId) {
+            document.getElementById(inputId).click();
+        }
+
         // 图片上传处理
         function handleImageUpload(section, input) {
             const files = input.files;
             const previewContainer = document.getElementById(`${section}-image-preview`);
             
+            // 清除"暂无图片"提示
+            if (previewContainer.querySelector('p')) {
+                previewContainer.innerHTML = '';
+            }
+            
+            // 存储图片的base64数据
+            const imageUrls = [];
+            
             for (let file of files) {
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
+                        const imageUrl = e.target.result;
+                        imageUrls.push(imageUrl);
+                        
                         const imageItem = document.createElement('div');
                         imageItem.className = 'image-item';
                         imageItem.innerHTML = `
-                            <img src="${e.target.result}" alt="上传的图片">
-                            <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+                            <img src="${imageUrl}" alt="上传的图片">
+                            <button class="remove-btn" onclick="removeImage(this, '${section}')">×</button>
                         `;
                         previewContainer.appendChild(imageItem);
+                        
+                        // 保存图片数据
+                        saveImageData(section, imageUrls);
                     };
                     reader.readAsDataURL(file);
                 }
             }
+        }
+
+        // 移除图片
+        function removeImage(button, section) {
+            button.parentElement.remove();
+            
+            // 如果没有图片了，显示提示
+            const previewContainer = button.closest('.image-preview');
+            if (previewContainer.children.length === 0) {
+                previewContainer.innerHTML = '<p style="color: #999; width: 100%; text-align: center;">暂无图片</p>';
+            }
+            
+            // 更新保存的图片数据
+            const imageUrls = [];
+            previewContainer.querySelectorAll('img').forEach(img => {
+                imageUrls.push(img.src);
+            });
+            saveImageData(section, imageUrls);
+        }
+
+        // 保存图片数据
+        function saveImageData(section, imageUrls) {
+            const imageData = JSON.parse(localStorage.getItem('imageData') || '{}');
+            imageData[section] = imageUrls;
+            localStorage.setItem('imageData', JSON.stringify(imageData));
         }
 
         // 保存更改
@@ -457,37 +578,54 @@
             // 保存到本地存储
             localStorage.setItem('personalWebsiteData', JSON.stringify(formData));
             
-            // 更新主页面
-            updateMainPage(formData);
+            // 更新预览内容
+            updateContentPreview(formData);
             
-            alert('更改已保存！');
+            alert('更改已保存！现在可以打开主页面查看效果了。');
         }
 
-        // 更新主页面
-        function updateMainPage(data) {
-            // 这里可以通过AJAX或直接修改DOM来更新主页面
-            // 为了简化，我们使用localStorage来传递数据
-            console.log('数据已保存，请刷新主页面查看效果');
+        // 更新内容预览
+        function updateContentPreview(data) {
+            const previewContainer = document.getElementById('content-preview');
+            previewContainer.innerHTML = `
+                <h3>${data.name || '徐定坤 (Xu Dingkun)'}</h3>
+                <p><em>${data.title || '生物化学与分子生物学硕士 | AI技术应用探索者'}</em></p>
+                <p>${data.intro || '个人简介'}</p>
+                <hr>
+                <p><strong>联系方式：</strong></p>
+                <p>电话: ${data.phone || '150-3766-9832'}</p>
+                <p>邮箱: ${data.email || '2022202040114@whu.edu.cn'}</p>
+                <hr>
+                <p><strong>教育经历：</strong></p>
+                <p>${data.whuEdu || '武汉大学经历'}</p>
+                <p>${data.hnustEdu || '河南科技大学经历'}</p>
+                <hr>
+                <p><strong>项目经历：</strong></p>
+                <p>${data.workExp || '工作经历'}</p>
+                <p>${data.ocrProject || 'OCR项目'}</p>
+                <p>${data.aiVideoProject || 'AI视频项目'}</p>
+                <p>${data.labAutomation || '湿实验自动化'}</p>
+                <p>${data.nanoProject || '纳米发电装置'}</p>
+                <hr>
+                <p><strong>技能爱好：</strong></p>
+                <p>${data.professionalSkills || '专业技能'}</p>
+                <p>${data.techSkills || '技术与编程'}</p>
+                <p>${data.hobbies || '兴趣爱好'}</p>
+            `;
+        }
+
+        // 打开主页面
+        function openMainPage() {
+            window.open('ai_studio_code.html', '_blank');
         }
 
         // 重置为默认
         function resetToDefault() {
             if (confirm('确定要重置所有内容吗？')) {
+                localStorage.removeItem('personalWebsiteData');
+                localStorage.removeItem('imageData');
                 location.reload();
             }
-        }
-
-        // 生成预览
-        function generatePreview() {
-            saveChanges();
-            const previewFrame = document.getElementById('preview-frame');
-            previewFrame.src = 'ai_studio_code.html?' + new Date().getTime();
-        }
-
-        // 导出网站
-        function exportWebsite() {
-            saveChanges();
-            alert('网站已导出！你可以将整个文件夹上传到网络服务器。');
         }
 
         // 页面加载时恢复保存的数据
@@ -502,8 +640,32 @@
                         element.value = data[key];
                     }
                 });
+                
+                // 更新预览
+                updateContentPreview(data);
             }
+            
+            // 恢复图片数据
+            const imageData = JSON.parse(localStorage.getItem('imageData') || '{}');
+            Object.keys(imageData).forEach(section => {
+                const imageUrls = imageData[section];
+                if (imageUrls && imageUrls.length > 0) {
+                    const previewContainer = document.getElementById(`${section}-image-preview`);
+                    if (previewContainer) {
+                        previewContainer.innerHTML = '';
+                        imageUrls.forEach(imageUrl => {
+                            const imageItem = document.createElement('div');
+                            imageItem.className = 'image-item';
+                            imageItem.innerHTML = `
+                                <img src="${imageUrl}" alt="上传的图片">
+                                <button class="remove-btn" onclick="removeImage(this, '${section}')">×</button>
+                            `;
+                            previewContainer.appendChild(imageItem);
+                        });
+                    }
+                }
+            });
         });
     </script>
 </body>
-</html> 
+</html>
