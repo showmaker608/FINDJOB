@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页编辑器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .editor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .editor-header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .editor-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .editor-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: white;
+            border-bottom: 3px solid #007bff;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-upload:hover {
+            border-color: #007bff;
+            background: #f8f9ff;
+        }
+
+        .image-upload input[type="file"] {
+            display: none;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .image-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255,0,0,0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .action-buttons {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+            background: #f8f9fa;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .section-group {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="editor-header">
+            <h1>个人主页可视化编辑器</h1>
+            <p>在这里轻松编辑你的个人主页内容</p>
+        </div>
+
+        <div class="editor-tabs">
+            <button class="tab-btn active" onclick="showTab('content')">内容编辑</button>
+            <button class="tab-btn" onclick="showTab('images')">图片管理</button>
+            <button class="tab-btn" onclick="showTab('preview')">预览效果</button>
+        </div>
+
+        <!-- 内容编辑标签页 -->
+        <div id="content" class="tab-content active">
+            <!-- 主页内容 -->
+            <div class="section-group">
+                <div class="section-title">主页信息</div>
+                <div class="form-group">
+                    <label>姓名</label>
+                    <input type="text" id="name" value="徐定坤 (Xu Dingkun)">
+                </div>
+                <div class="form-group">
+                    <label>职位描述</label>
+                    <input type="text" id="title" value="生物化学与分子生物学硕士 | AI技术应用探索者">
+                </div>
+                <div class="form-group">
+                    <label>个人简介</label>
+                    <textarea id="intro">一位积极主动、充满抱负的武汉大学硕士研究生，在生物化学与分子生物学领域拥有扎实的基础。具备出色的组织领导能力，曾多次担任班长。抗压性强，能够独立负责并完成复杂的科研项目。致力于将计算机视觉(CV)和自然语言处理(NLP)等前沿技术应用于解决实际问题，渴望在充满挑战的岗位上创造价值。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>电话号码</label>
+                    <input type="text" id="phone" value="150-3766-9832">
+                </div>
+                <div class="form-group">
+                    <label>邮箱地址</label>
+                    <input type="text" id="email" value="2022202040114@whu.edu.cn">
+                </div>
+            </div>
+
+            <!-- 教育经历 -->
+            <div class="section-group">
+                <div class="section-title">教育经历</div>
+                <div class="form-group">
+                    <label>武汉大学经历</label>
+                    <textarea id="whu-edu">武汉大学 (2022.09 – 2025.06)
+学位: 生物化学与分子生物学 硕士
+主修课程: 现代仪器分析, 表观遗传学, 蛋白质组学, 高级生物化学与分子生物学
+荣誉: 武汉大学学业奖学金</textarea>
+                </div>
+                <div class="form-group">
+                    <label>河南科技大学经历</label>
+                    <textarea id="hnust-edu">河南科技大学 (2018.09 – 2022.06)
+学位: 生物技术 本科
+主修课程: 生物化学, 遗传学, 分子生物学, 生物信息学, 细胞工程, 酶工程
+荣誉: 河南科技大学优秀学生干部、河南科技大学二等奖学金</textarea>
+                </div>
+            </div>
+
+            <!-- 项目经历 -->
+            <div class="section-group">
+                <div class="section-title">项目/工作经历</div>
+                <div class="form-group">
+                    <label>华大集团工作经历</label>
+                    <textarea id="work-exp">营销管培生 | 深圳华大集团 (2025.02 – 2025.03)
+在营销部门全流程轮转，主要负责销售场景建立、高科技产品对接解惑及商务谈判等工作。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>OCR项目</label>
+                    <textarea id="ocr-project">项目：基于OCR的化妆品用户反馈智能分析引擎
+独立开发此智能引擎，旨在自动化处理电商平台的图片反馈，高效提取用户洞察。核心贡献: 使用Python (pytesseract, jieba) 构建了从图片文字识别、关键词提取到词云可视化 (wordcloud) 的完整工作流，并将手动分析效率提升了数倍。通过模块化重构和异常处理，保证了工具的健壮性与可移植性。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>AI视频项目</label>
+                    <textarea id="ai-video-project">项目：AI视频生成工作流《古人的一生》
+使用Coze平台设计并实现了一个复杂的AIGC工作流。此流程仅需输入一个名字，即可全自动地生成一部讲述古人生平的长视频，展现了在自动化和生成式AI领域的实践能力。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>湿实验自动化</label>
+                    <textarea id="lab-automation">项目：湿实验自动化
+作为负责人，利用R、Python及ChatGPT为实验结果分析赋能，将流程分析时间缩短至少2小时，并成功推广至全实验室使用。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>纳米发电装置</label>
+                    <textarea id="nano-project">项目：新型高效纸基摩擦纳米发电装置 (2019.03-2019.07)
+作为第一负责人，探索可穿戴设备生物发电的可能。主要负责项目任务分配、监督、组织讨论及最终汇报。</textarea>
+                </div>
+            </div>
+
+            <!-- 技能爱好 -->
+            <div class="section-group">
+                <div class="section-title">技能与爱好</div>
+                <div class="form-group">
+                    <label>专业技能</label>
+                    <textarea id="professional-skills">分子生物学: 精通Western-blot, qPCR, CRISPR-Cas9基因敲除系统。
+细胞/病理学: 熟练掌握原代细胞培养、免疫荧光、石蜡包埋等技术。
+动物实验: 具备丰富的小鼠饲养、灌流、腹腔注射及毛囊分离经验。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>技术与编程</label>
+                    <textarea id="tech-skills">编程语言: 熟练使用 Python, R语言, Excel, PowerPoint, GraphPad。
+语言能力: 雅思 6.0，大学英语六级(CET-6) 462分，普通话二级甲等。</textarea>
+                </div>
+                <div class="form-group">
+                    <label>兴趣爱好</label>
+                    <textarea id="hobbies">领导力: 长期担任班长，组织能力强。
+社团活动: 曾任实验室生活委员、茶艺协会秘书部成员、学院合唱团成员等，积极参与校园生活。</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图片管理标签页 -->
+        <div id="images" class="tab-content">
+            <div class="section-group">
+                <div class="section-title">主页头像图片</div>
+                <div class="image-upload" onclick="document.getElementById('home-images').click()">
+                    <input type="file" id="home-images" multiple accept="image/*" onchange="handleImageUpload('home', this)">
+                    <p>点击上传主页头像图片（可多选）</p>
+                </div>
+                <div id="home-image-preview" class="image-preview"></div>
+            </div>
+
+            <div class="section-group">
+                <div class="section-title">教育经历图片</div>
+                <div class="image-upload" onclick="document.getElementById('education-images').click()">
+                    <input type="file" id="education-images" multiple accept="image/*" onchange="handleImageUpload('education', this)">
+                    <p>点击上传教育经历相关图片（可多选）</p>
+                </div>
+                <div id="education-image-preview" class="image-preview"></div>
+            </div>
+
+            <div class="section-group">
+                <div class="section-title">项目展示图片</div>
+                <div class="image-upload" onclick="document.getElementById('projects-images').click()">
+                    <input type="file" id="projects-images" multiple accept="image/*" onchange="handleImageUpload('projects', this)">
+                    <p>点击上传项目展示图片（可多选）</p>
+                </div>
+                <div id="projects-image-preview" class="image-preview"></div>
+            </div>
+
+            <div class="section-group">
+                <div class="section-title">技能爱好图片</div>
+                <div class="image-upload" onclick="document.getElementById('hobbies-images').click()">
+                    <input type="file" id="hobbies-images" multiple accept="image/*" onchange="handleImageUpload('hobbies', this)">
+                    <p>点击上传技能爱好相关图片（可多选）</p>
+                </div>
+                <div id="hobbies-image-preview" class="image-preview"></div>
+            </div>
+        </div>
+
+        <!-- 预览标签页 -->
+        <div id="preview" class="tab-content">
+            <div class="section-group">
+                <div class="section-title">实时预览</div>
+                <p>点击下方按钮查看编辑后的效果</p>
+                <button class="btn btn-primary" onclick="generatePreview()">生成预览</button>
+                <button class="btn btn-success" onclick="saveChanges()">保存更改</button>
+            </div>
+            <iframe id="preview-frame" class="preview-frame" src="ai_studio_code.html"></iframe>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="saveChanges()">保存所有更改</button>
+            <button class="btn btn-secondary" onclick="resetToDefault()">重置为默认</button>
+            <button class="btn btn-success" onclick="exportWebsite()">导出网站</button>
+        </div>
+    </div>
+
+    <script>
+        // 标签页切换功能
+        function showTab(tabName) {
+            // 隐藏所有标签页内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 移除所有标签按钮的激活状态
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 显示选中的标签页
+            document.getElementById(tabName).classList.add('active');
+            
+            // 激活对应的标签按钮
+            event.target.classList.add('active');
+        }
+
+        // 图片上传处理
+        function handleImageUpload(section, input) {
+            const files = input.files;
+            const previewContainer = document.getElementById(`${section}-image-preview`);
+            
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imageItem = document.createElement('div');
+                        imageItem.className = 'image-item';
+                        imageItem.innerHTML = `
+                            <img src="${e.target.result}" alt="上传的图片">
+                            <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+                        `;
+                        previewContainer.appendChild(imageItem);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+        // 保存更改
+        function saveChanges() {
+            // 收集所有表单数据
+            const formData = {
+                name: document.getElementById('name').value,
+                title: document.getElementById('title').value,
+                intro: document.getElementById('intro').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                whuEdu: document.getElementById('whu-edu').value,
+                hnustEdu: document.getElementById('hnust-edu').value,
+                workExp: document.getElementById('work-exp').value,
+                ocrProject: document.getElementById('ocr-project').value,
+                aiVideoProject: document.getElementById('ai-video-project').value,
+                labAutomation: document.getElementById('lab-automation').value,
+                nanoProject: document.getElementById('nano-project').value,
+                professionalSkills: document.getElementById('professional-skills').value,
+                techSkills: document.getElementById('tech-skills').value,
+                hobbies: document.getElementById('hobbies').value
+            };
+
+            // 保存到本地存储
+            localStorage.setItem('personalWebsiteData', JSON.stringify(formData));
+            
+            // 更新主页面
+            updateMainPage(formData);
+            
+            alert('更改已保存！');
+        }
+
+        // 更新主页面
+        function updateMainPage(data) {
+            // 这里可以通过AJAX或直接修改DOM来更新主页面
+            // 为了简化，我们使用localStorage来传递数据
+            console.log('数据已保存，请刷新主页面查看效果');
+        }
+
+        // 重置为默认
+        function resetToDefault() {
+            if (confirm('确定要重置所有内容吗？')) {
+                location.reload();
+            }
+        }
+
+        // 生成预览
+        function generatePreview() {
+            saveChanges();
+            const previewFrame = document.getElementById('preview-frame');
+            previewFrame.src = 'ai_studio_code.html?' + new Date().getTime();
+        }
+
+        // 导出网站
+        function exportWebsite() {
+            saveChanges();
+            alert('网站已导出！你可以将整个文件夹上传到网络服务器。');
+        }
+
+        // 页面加载时恢复保存的数据
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('personalWebsiteData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                // 恢复表单数据
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key.replace(/([A-Z])/g, '-$1').toLowerCase());
+                    if (element) {
+                        element.value = data[key];
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
